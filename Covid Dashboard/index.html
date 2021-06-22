@@ -37,17 +37,16 @@
           </div>
         </section>
         <form class="dashboard__search" id="dashboardSearch">
-          <input class="dashboard__search-input" type="search" placeholder="Search by region" name="search" />
-          <!-- <button type="submit">icon search</button> -->
+          <input class="dashboard__search-input" type="search" placeholder="Search by region" name="search"/>
         </form>
         <table class="dashboard__table table" id="dashboardTable">
           <thead class="dashboard__table-header" id="tableHead">
             <tr id="tr">
-              <th><span class="header-arrow-up">Country</span></th>
-              <th><span class="header-arrow-up">Confirmed</span></th>
-              <th><span class="header-arrow-up">Deaths</span></th>
-              <th><span class="header-arrow-up">Recovered</span></th>
-              <th><span class="header-arrow-up">Existing</span></th>
+              <th><span data-sorting="false" data-order="-1" data-key= "label">Country</span></th>
+              <th><span data-sorting="true" data-order="-1" data-key="confirmed">Confirmed</span></th>
+              <th><span data-sorting="false" data-order="1" data-key="deaths">Deaths</span></th>
+              <th><span data-sorting="false" data-order="1" data-key="recovered">Recovered</span></th>
+              <th><span data-sorting="false" data-order="1" data-key="existing">Existing</span></th>
             </tr>
           </thead>
           <tbody class="dashboard__table-body" id="tableBody">

@@ -100,18 +100,17 @@ table {
 	color: var(--red-color);
 }
 
-.header-arrow-up::before{
+[data-sorting]::before{
+	margin-right: 10px;
+}
+
+[data-sorting="true"][data-order="1"]::before{
 	content: "\2191";
-	margin-right: 10px;
 }
 
-
-.header-arrow-down::before{
+[data-sorting="true"][data-order="-1"]::before{
 	content: "\2193";
-	margin-right: 10px;
 }
-
-
 
 .dashboard__tabs>a {
 	padding: 16px 0;
