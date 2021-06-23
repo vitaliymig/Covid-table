@@ -50,19 +50,6 @@ table {
 *, ::before, ::after{
     box-sizing: border-box;
 }
-.container{
-    width: 100%;
-    padding: 0 15px;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.display-flex{
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-
 
 /*------Variables------ */
 :root {
@@ -79,24 +66,39 @@ table {
 	--font-s-20: 20px;
 }
 
-.container{
+
+body{
 	background: var(--bg-color);
+	font-family: system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+
+.container{
+    width: 100%;
+    padding: 0 15px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.display-flex{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .font-color{
 	color: var(--font-color);
 }
 
-.yellow-color{
+.confirmed-color{
 	color: var(--yellow-color);
 }
-.white-color{
+.deaths-color{
 	color: var(--white-color);
 }
-.green-color{
+.recovered-color{
 	color: var(--green-color);
 }
-.red-color{
+.existing-color{
 	color: var(--red-color);
 }
 
@@ -123,10 +125,6 @@ table {
 	text-decoration: none;
 }
 
-
-
-
-
 .dashboard__tabs>a:focus{
 	background-color: var(--section-bg);
 	font-size: var(--font-s-16);
@@ -150,6 +148,7 @@ table {
 .dashboard__totals h2 {
 	font-size: var(--font-s-14);
 	color: var(--font-color);
+	text-transform: capitalize;
 }
 
 
@@ -193,8 +192,20 @@ table {
 .dashboard__table-body td{
 	padding: 16px 0;
 	text-align: center;
+	line-height: 1.5;
 }
 
+.dashboard__table-body td>span{
+	display: block;
+}
+.dashboard__table-body td:first-child,
+.dashboard__table-header th:first-child{
+	text-align: left;
+}
+.dashboard__table-body td:not(:first-child),
+.dashboard__table-header th:not(:first-child){
+	text-align: right;
+}
 .dashboard__table-body tr:hover{
 	background-color: var(--section-bg);
 	cursor: pointer;
