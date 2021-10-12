@@ -10,30 +10,30 @@
   <body>
     <main class="dashboard">
       <div class="container">
-        <section class="dashboard__tabs display-flex">
-          <a href="#" class="visited">Ukraine <span>65465456</span></a>
-          <a href="#">World <span>65465456</span></a>
+        <section class="dashboard__tabs display-flex" id="dashboardTabs">
+          <a href="#"  data-type="ukraine" data-active="false">Ukraine <span></span></a>
+          <a href="#" data-type="world" data-active="true">World <span></span></a>
         </section>
         <section class="dashboard__totals display-flex" id="dashboardTotals">
           <div>
             <h2>Confirmed:</h2>
-            <div class="dashboard__totals-data yellow-color">6+46456</div>
-            <div class="dashboard__totals-delta yellow-color">56456465</div>
+            <div class="dashboard__totals-data yellow-color"></div>
+            <div class="dashboard__totals-delta yellow-color"></div>
           </div>
           <div>
             <h2>Deaths:</h2>
-            <div class="dashboard__totals-data white-color">6+46456</div>
-            <div class="dashboard__totals-delta white-color">56456465</div>
+            <div class="dashboard__totals-data white-color"></div>
+            <div class="dashboard__totals-delta white-color"></div>
           </div>
           <div>
             <h2>Recovered:</h2>
-            <div class="dashboard__totals-data green-color">6+46456</div>
-            <div class="dashboard__totals-delta green-color">56456465</div>
+            <div class="dashboard__totals-data green-color"></div>
+            <div class="dashboard__totals-delta green-color"></div>
           </div>
           <div>
             <h2>Existing:</h2>
-            <div class="dashboard__totals-data red-color">6+46456</div>
-            <div class="dashboard__totals-delta red-color">56456465</div>
+            <div class="dashboard__totals-data red-color"></div>
+            <div class="dashboard__totals-delta red-color"></div>
           </div>
         </section>
         <form class="dashboard__search" id="dashboardSearch">
@@ -42,7 +42,7 @@
         <table class="dashboard__table table" id="dashboardTable">
           <thead class="dashboard__table-header" id="tableHead">
             <tr id="tr">
-              <th><span data-sorting="false" data-order="-1" data-key= "label">Country</span></th>
+              <th><span data-sorting="false" data-order="-1" data-key= "label" id="thLabel">Country</span></th>
               <th><span data-sorting="true" data-order="-1" data-key="confirmed">Confirmed</span></th>
               <th><span data-sorting="false" data-order="1" data-key="deaths">Deaths</span></th>
               <th><span data-sorting="false" data-order="1" data-key="recovered">Recovered</span></th>
@@ -50,27 +50,7 @@
             </tr>
           </thead>
           <tbody class="dashboard__table-body" id="tableBody">
-            <!-- <tr>
-              <td>Country</td>
-              <td>Confirmed</td>
-              <td>Deaths</td>
-              <td>Recovered</td>
-              <td>Existing</td>
-            </tr>
-            <tr>
-              <td>Country</td>
-              <td>Confirmed</td>
-              <td>Deaths</td>
-              <td>Recovered</td>
-              <td>Existing</td>
-            </tr>
-            <tr>
-              <td>Country</td>
-              <td>Confirmed</td>
-              <td>Deaths</td>
-              <td>Recovered</td>
-              <td>Existing</td>
-            </tr> -->
+            
           </tbody>
         </table>
       </div>

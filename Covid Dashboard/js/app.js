@@ -8,6 +8,10 @@ const dashboardTotals = document.getElementById(`dashboardTotals`)
 const dashboardTableThead = document.getElementById(`tableHead`)
 const dashboardTableTbody = document.getElementById(`tableBody`)
 const dashboardSearch = document.getElementById(`dashboardSearch`)
+const dashboardTabs = document.getElementById(`dashboardTabs`)
+const thLabel = document.getElementById(`thLabel`)
+console.log(thLabel);
+
 
 const translations ={
     en: {
@@ -18,7 +22,27 @@ const translations ={
     }
 }
 
+
 getData()
+
+
+dashboardTabs.addEventListener(`click`, e=>{
+    const currentTab = e.target.closest(`a`)
+    if (currentTab) {
+        const tabs = Array.from(dashboardTabs.children)
+        tabs.forEach(tab => {
+            if (tab !== currentTab) {
+                tab.dataset.active = `false`
+            }else {
+                tab.dataset.active = `true`
+            }
+        })
+        const type = currentTab.dataset.type
+        dataType = type
+        tableData = objCovidData[dataType]
+    }
+    renderTableBody(dashboardTableTbody, tableData)
+})
 
 
 dashboardTableThead.addEventListener(`click`, e => {
@@ -57,24 +81,37 @@ dashboardTableThead.addEventListener(`click`, e => {
     }
 })
 
+
 dashboardSearch.addEventListener(`submit`, event => {
     event.preventDefault()
 })
+
+
 dashboardSearch.addEventListener(`keyup`, event => {
     const query = event.target.value.toLowerCase().trim().split(` `).filter(word => Boolean(word))
     tableData = objCovidData[dataType].filter(dataObj => {
         return query.every(word => {
             return dataObj.label[lang].toLowerCase().includes(word)
         })
-
     })
     renderTableBody(dashboardTableTbody, tableData)
 })
 
 
+function renderTabsTotals(tabsEl,allDataObj) {
+    const tabs = Array.from(tabsEl.children)
+        console.log(tabs);
+        tabs.forEach(tab =>{
+            const type = tab.dataset.type
+            tab.firstElementChild.textContent = addThousandsSeparators(allDataObj[type].map(dataObj => dataObj.confirmed).reduce((acc, num) => acc + num,0))
+        })
+}
+
+
 function renderDashboardTotals(totalsEl, dataArr) {
     totalsEl.innerHTML = createDashboardTotals(dataArr).join(``)
 }
+
 
 function createDashboardTotals(dataArr) {
     const keys = ['confirmed', 'deaths', 'recovered', 'existing']
@@ -84,6 +121,8 @@ function createDashboardTotals(dataArr) {
         return createKeyTotals(key, total, delta_total)
     })
 }
+
+
 function createKeyTotals(key, total, delta_total) {
     return `<div>
     <h2>${key}:</h2>
@@ -92,13 +131,20 @@ function createKeyTotals(key, total, delta_total) {
   </div>`
 }
 
+
 function renderTableBody(tableEl, dataArr) {
+    if (dataType === 'world') {
+        thLabel.textContent = 'Country'
+    }else if(dataType ==='ukraine')
+        thLabel.textContent = 'Region'
     tableEl.innerHTML = createTableBody(dataArr).join(``)
 }
+
 
 function createTableBody(dataArr) {
     return dataArr.map(dataObj => createTableRow(dataObj))
 }
+
 
 function createTableRow(dataObj) {
     return `<tr>
@@ -123,6 +169,7 @@ function displayDelta(delta) {
     return displayDelta
 }
 
+
 function addThousandsSeparators(value) {
     const re = /[0-9](?=(?:[0-9]{3})+(?![0-9]))/g
     return `${value}`.replace(re , g1 => `${g1},`);
@@ -135,6 +182,7 @@ async function getData() {
         const jsonData = await response.json()
         objCovidData = jsonData
         tableData = objCovidData[dataType]
+        renderTabsTotals(dashboardTabs,objCovidData)
         renderDashboardTotals(dashboardTotals, tableData) 
         renderTableBody(dashboardTableTbody, tableData)
     } catch (e) {
